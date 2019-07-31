@@ -2,10 +2,16 @@
 
 <br />
 <b>Amigos</b>
-<ng-container *ngFor="let user of friends | search: query; let i = index">
-  <div>
-    <a routerLink="/conversation/{{user.uid}}">
-      {{ i }}. {{ user.nick }} - {{ user.email }}
-    </a>
-  </div>
-</ng-container>
+<mat-list>
+  <mat-list-item *ngFor="let user of friends | search: query; let i = index">
+      <img matListAvatar [src]="user.status | userStatus" alt="...">
+      <h3 matLine> 
+        <a routerLink="/conversation/{{user.uid}}">
+          {{user.nick}}
+        </a>
+      </h3>
+      <p matLine>
+        <span> {{user.email}} </span>
+      </p>
+  </mat-list-item>
+</mat-list>
