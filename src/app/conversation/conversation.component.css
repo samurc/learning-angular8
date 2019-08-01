@@ -1,0 +1,19 @@
+#conversationProfile{
+  background-image: url('/assets/img/msnbg.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.container{
+  max-width: 1020px;
+}
+
+.photoSection{
+  flex-basis: 150px;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.conversationSection{
+  flex: 1;
+}

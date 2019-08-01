@@ -1,4 +1,15 @@
-<app-menu></app-menu>
-<div class="generalContent">
-	<router-outlet></router-outlet>
+<div class="wrap wrapToolbar">
+	<app-menu></app-menu>
+	<div class="generalContent">
+		<div class="navLeft"></div>
+		<div class="mainContent">
+			<div class="innerWrap">
+				<div class="inner" id="innerScroll">
+	  			<router-outlet></router-outlet>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+
+
