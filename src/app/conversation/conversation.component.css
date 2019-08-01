@@ -76,3 +76,53 @@
 .messageForm textarea{
   resize: none;
 }
+
+.itemChat{
+  margin-bottom: .8rem;
+}
+.avatarChat{
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+.textChat{
+  position: relative;
+  background: #A4E4FD;
+  padding: .8rem;
+  border-radius: .4em;
+}
+.textChat:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 14px solid transparent;
+  border-top: 0;
+  margin-top: -7px;
+}
+.itemChat:not(.itemChatB) .textChat:after {
+  left: 0;
+  border-right-color: #A4E4FD;
+  border-left: 0;
+  margin-left: -14px;
+}
+
+
+.itemChatB .avatarChat {
+  order: 2;
+  margin-right: 0;
+  margin-left: 10px;
+}
+.itemChatB .textChat{
+  background: #BCFFB0;
+}
+.itemChatB .textChat:after{
+  right: 0;
+  border-left-color: #BCFFB0;
+  border-right: 0;
+  margin-right: -14px;
+}
+
+
