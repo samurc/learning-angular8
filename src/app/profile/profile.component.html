@@ -2,7 +2,12 @@
     <div class="container pato45">
         <div class="layoutRow">
             <div class="col-md-3">
-                <div class="avatarFrameonline">
+								<div
+									class="avatarFrameonline"
+									[ngClass]="{'avatarFrameaway': user && user.status === 'away', 'avatarFramebusy': user && user.status ===
+									'busy',
+									'avatarFrameoffline': user && user.status === 'appear_offline'}"
+								>
                     <img src="assets/img/generic_avatar.png" alt="" class="avatarImage img-fluid">
 								</div>
 								<div class="marto15 layoutRow layoutAlignSpaceAroundCenter">
@@ -13,23 +18,23 @@
 									</label>
 								</div>
 						</div>
-						<div class="flex-1 marle15">
+						<div *ngIf="user" class="flex-1 marle15">
 							<form class="app-form layoutColumn">
 							  <mat-form-field class="full-width">
-							    <input matInput type="text" placeholder="Ingrese un nick">
+							    <input [(ngModel)]="user.nick" name="nick" matInput type="text" placeholder="Ingrese un nick">
 							  </mat-form-field>
 
 							  <mat-form-field class="full-width">
-							    <input matInput type="text" placeholder="Ingrese un subnick">
+							    <input [(ngModel)]="user.subnick" name="subnick" matInput type="text" placeholder="Ingrese un subnick">
 							  </mat-form-field>
 
 							  <mat-form-field class="full-width">
-							    <input matInput type="email" disabled placeholder="Ingrese un email">
+							    <input [(ngModel)]="user.email" name="email" matInput type="email" disabled placeholder="Ingrese un email">
 								</mat-form-field>
 								
 								<mat-form-field class="full-width">
 								  <mat-label>Estado</mat-label>
-								  <mat-select>
+								  <mat-select [(ngModel)]="user.status" name="status">
 								    <mat-option *ngFor="let st of statusList" [value]="st.slug">
 								      {{st.name}}
 								    </mat-option>
@@ -37,7 +42,7 @@
 								</mat-form-field>
 
 								<div class="center marto15">
-								  <button mat-raised-button color="primary" class="full-width">Guardar</button>
+								  <button (click)="saveSettings()" mat-raised-button color="primary" class="full-width">Guardar</button>
 								</div>
 
 							</form>

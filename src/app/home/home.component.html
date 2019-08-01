@@ -3,16 +3,22 @@
     <div class="homeHeadContainer">
       <div class="layoutRow flexWrap">
         <div class="col-avatar">
-          <div class="avatarFrameonline">
+          <div 
+            class="avatarFrameonline"
+            [ngClass]="{'avatarFrameaway': user && user.status === 'away', 'avatarFramebusy': user && user.status ===
+            'busy',
+            'avatarFrameoffline': user && user.status === 'appear_offline'}">
             <img src="assets/img/generic_avatar.png" id="homeAvatarPicture" alt="">
           </div>
         </div>
-        <div class="col col-profile-detail marle15 layoutColumn layoutAlignCenterStart">
-          <b>Samuel</b>
+        <div *ngIf="user" class="col col-profile-detail marle15 layoutColumn layoutAlignCenterStart">
+          <b>{{ user.nick }}</b>
           <div>
-            <span>Online</span>
+            <span>{{ user.status }}</span>
             <br/>
-            <span>< Escribe un mensaje personal ></span>
+            <span>
+              <{{ user.subnick }}>
+               {{ user.email }}</span>
             <br/>
             <a (click)="logout()">Logout</a>
           </div>

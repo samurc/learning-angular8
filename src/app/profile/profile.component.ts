@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../interfaces/user';
+import { UserService } from '../services/user.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,7 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
   statusList: any [];
-  constructor() {
+  user: User;
+  constructor(
+    private userService: UserService,
+    private authenticationService: AuthenticationService
+  ) {
+    this.authenticationService.getStatus().subscribe((status) => {
+      this.userService.getUserById(status.uid).valueChanges().subscribe((data: User) => {
+        this.user = data;
+        console.log(this.user);
+      }, (error) => {
+        console.log(error);
+      });
+    }, (error) => {
+      console.log(error);
+    });
+
     this.statusList = [
       { slug: "online", name: "Conectado" },
       { slug: "away", name: "Ausente" },
@@ -17,6 +35,15 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  saveSettings() {
+    this.userService.editUser(this.user).then(() => {
+      alert('Cambios guardados');
+    }).catch((error) => {
+      alert('Hubo un error');
+      console.log(error);
+    });
   }
 
 }
