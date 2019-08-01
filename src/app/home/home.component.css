@@ -1,0 +1,32 @@
+#homeContainer{
+    background-image: url('/assets/img/msnbg.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.whiteBorderGlassBox {
+    border: 2px solid rgba(255, 255, 255, .75);
+    padding: 8px;
+}
+.homeHeadContainer{
+    background-color: rgba(255, 255, 255, .50);
+}
+.whiteContainerPadded{
+    padding: 15px;
+    background-color: #fff;
+}
+.col-avatar {
+  flex-basis: 120px;
+}
+.col-md-auto {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+.col {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+}
+img.icon{
+    width: 30px;
+}

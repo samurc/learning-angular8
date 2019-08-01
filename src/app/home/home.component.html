@@ -1,17 +1,49 @@
-<input type="text" placeholder="Buscar amigo" [(ngModel)]="query"/>
+<div id="homeContainer">
+  <div class="whiteBorderGlassBox">
+    <div class="homeHeadContainer">
+      <div class="layoutRow flexWrap">
+        <div class="col-avatar">
+          <div class="avatarFrameonline">
+            <img src="assets/img/generic_avatar.png" id="homeAvatarPicture" alt="">
+          </div>
+        </div>
+        <div class="col col-profile-detail marle15 layoutColumn layoutAlignCenterStart">
+          <b>Samuel</b>
+          <div>
+            <span>Online</span>
+            <br>
+            <span>< Escribe un mensaje personal ></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<br />
-<b>Amigos</b>
-<mat-list>
-  <mat-list-item *ngFor="let user of friends | search: query; let i = index">
-      <img matListAvatar [src]="user.status | userStatus" alt="...">
-      <h3 matLine> 
-        <a routerLink="/conversation/{{user.uid}}">
-          {{user.nick}}
-        </a>
-      </h3>
-      <p matLine>
-        <span> {{user.email}} </span>
-      </p>
-  </mat-list-item>
-</mat-list>
+  <div class="whiteContainerPadded marto15">
+    <div class="layoutRow">
+      <div class="col">
+        <mat-form-field class="full-width">
+          <input matInput type="text" placeholder="Buscar amigo" [(ngModel)]="query" />
+        </mat-form-field>
+      </div>
+      <div class="col-md-auto">
+        <img src="assets/img/logo_live_add.png" class="icon" alt="">
+      </div>
+    </div>
+
+    <b>Amigos ({{ friends.length}} / {{ friends.length }})</b>
+    <mat-list>
+      <mat-list-item *ngFor="let user of friends | search: query; let i = index">
+        <img matListAvatar [src]="user.status | userStatus" alt="...">
+        <h3 matLine>
+          <a routerLink="/conversation/{{user.uid}}">
+            {{user.nick}} - <span> {{user.email}} </span>
+          </a>
+        </h3>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  
+</div>
+
+

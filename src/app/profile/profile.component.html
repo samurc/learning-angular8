@@ -1,1 +1,47 @@
-<p>profile works!</p>
+<div id="profileContainer">
+    <div class="container pato45">
+        <div class="layoutRow">
+            <div class="col-md-3">
+                <div class="avatarFrameonline">
+                    <img src="assets/img/generic_avatar.png" alt="" class="avatarImage img-fluid">
+								</div>
+								<div class="marto15 layoutRow layoutAlignSpaceAroundCenter">
+									<span>Cambiar foto</span>
+									<label class="custom-file-upload">
+										<input type="file" name="" id="">
+										Subir avatar
+									</label>
+								</div>
+						</div>
+						<div class="flex-1 marle15">
+							<form class="app-form layoutColumn">
+							  <mat-form-field class="full-width">
+							    <input matInput type="text" placeholder="Ingrese un nick">
+							  </mat-form-field>
+
+							  <mat-form-field class="full-width">
+							    <input matInput type="text" placeholder="Ingrese un subnick">
+							  </mat-form-field>
+
+							  <mat-form-field class="full-width">
+							    <input matInput type="email" disabled placeholder="Ingrese un email">
+								</mat-form-field>
+								
+								<mat-form-field class="full-width">
+								  <mat-label>Estado</mat-label>
+								  <mat-select>
+								    <mat-option *ngFor="let st of statusList" [value]="st.slug">
+								      {{st.name}}
+								    </mat-option>
+								  </mat-select>
+								</mat-form-field>
+
+								<div class="center marto15">
+								  <button mat-raised-button color="primary" class="full-width">Guardar</button>
+								</div>
+
+							</form>
+						</div>
+        </div>
+    </div>
+</div>
