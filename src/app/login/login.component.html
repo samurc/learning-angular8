@@ -21,21 +21,22 @@
                 <div class="borderedContainer">
                     <form class="app-form layoutColumn">
                         <mat-form-field class="full-width">
-                            <input matInput type="email" placeholder="Ingrese email">
+                            <input [(ngModel)]="email" name="email" matInput type="email" placeholder="Ingrese email">
                         </mat-form-field>
 
                         <mat-form-field class="full-width">
-                            <input matInput type="password" placeholder="Ingrese contraseña">
+                            <input [(ngModel)]="password" name="password" matInput type="password" placeholder="Ingrese contraseña">
                         </mat-form-field>
 
                         <mat-form-field *ngIf="operation == 'register'" class="full-width">
-                          <input matInput type="text" placeholder="Ingrese nick">
+                          <input [(ngModel)]="nick" name="nick" matInput type="text" placeholder="Ingrese nick">
                         </mat-form-field>
                     </form>
                 </div>
                 <div class="center marto15">
-                  <button *ngIf="operation == 'login'"  mat-raised-button color="primary">Iniciar sesión</button>
-                  <button *ngIf="operation == 'register'"  mat-raised-button color="primary">Registrarme</button>
+                  <button (click)="login()" *ngIf="operation == 'login'"  mat-raised-button color="primary">Iniciar sesión</button>
+                  <button (click)="register()" *ngIf="operation == 'register'" mat-raised-button
+                    color="primary">Registrarme</button>
                 </div>
             </div>
         </div>
