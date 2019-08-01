@@ -6,6 +6,13 @@
 
 .container{
   max-width: 1020px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+.layoutGeneral {
+  height: 100%;
 }
 
 .photoSection{
@@ -16,4 +23,56 @@
 
 .conversationSection{
   flex: 1;
+  padding: 1rem;
+}
+.lastMessage{
+  font-size: 14px;
+}
+.historialChat{
+  padding: 0.8rem 1.6rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.fixedContainer{
+  height: 60px;
+  padding: 10px;
+  color: #000;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, .12),
+  0 1px 4px rgba(0, 0, 0, .24);
+  margin-bottom: 1rem;
+}
+.nameTitle{
+  font-weight: bold;
+  font-size: 2rem;
+}
+.statusTitle{
+  font-size: 1.2rem;
+}
+.statusMessage{
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+.contentWrapper{
+  display: flex;
+  flex: 1;
+  min-height: 0px;
+}
+.overflowContainer{
+  flex: 1;
+  overflow: auto;
+}
+.overflowContent{
+  color: black;
+  background-color: #ddd;
+  padding: 10px;
+}
+
+
+.messageChat{
+  padding: 0.8rem 1.6rem;
+  flex-basis: 175px;
+}
+.messageForm textarea{
+  resize: none;
 }

@@ -1,6 +1,6 @@
 <div id="conversationProfile" class="main">
 	<div class="container">
-		<div class="layoutRow">
+		<div class="flex-1 layoutRow layoutGeneral">
 			<div class="photoSection layoutColumn layoutAlignSpaceAroundCenter">
 				<div class="avatarFrameonline">
 				  <img src="assets/img/generic_avatar.png" alt="" class="avatarImage img-fluid">
@@ -9,8 +9,39 @@
 				  <img src="assets/img/generic_avatar.png" alt="" class="avatarImage img-fluid">
 				</div>
 			</div>
-			<div class="conversationSection">
-
+			<div class="conversationSection layoutColumn">
+				<div class="historialChat">
+					<div class="fixedContainer">
+						<div class="nameTitle">Cat <span class="statusTitle">(busy)</span></div>
+						<div class="statusMessage">I love my cat</div>
+					</div>
+					<div class="contentWrapper">
+						<div class="overflowContainer">
+							<div class="overflowContent">
+								
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="messageChat">
+					<span class="lastMessage">Last message received on June 30, 2019 at 12:32</span>
+					<form class="messageForm">
+						<mat-form-field class="full-width">
+						  <textarea matInput placeholder="" rows="3" resize="no"></textarea>
+						</mat-form-field>
+					</form>
+					<div class="layoutRow">
+						<button mat-icon-button aria-label="Example icon-button with a heart icon">
+						  <mat-icon>face</mat-icon>
+						</button>
+						<button mat-icon-button color="primary" aria-label="Example icon-button with a heart icon">
+						  <mat-icon>pan_tool</mat-icon>
+						</button>
+						<button mat-icon-button color="accent" aria-label="Example icon-button with a heart icon">
+						  <mat-icon>wifi_tethering</mat-icon>
+						</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
