@@ -9,6 +9,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppSharedModule } from './app-shared.module';
@@ -43,7 +44,8 @@ import { UserStatusPipe } from './pipes/user-status';
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     FormsModule,
-    AppSharedModule
+    AppSharedModule,
+    ImageCropperModule
   ],
   providers: [],
   bootstrap: [AppComponent]
