@@ -1,8 +1,8 @@
-<div id="conversationContainer" class="main" [ngClass]="{'shaker': shake}">
+<div id="conversationContainer" class="main" [ngClass]="{ shaker: shake }">
   <div class="container">
     <div class="flex-1 layoutRow layoutGeneral">
       <div class="photoSection layoutColumn layoutAlignSpaceAroundCenter">
-        <div 
+        <div
           class="avatarFrameonline"
           [ngClass]="{
             avatarFrameaway: friend && friend.status === 'away',
@@ -11,12 +11,12 @@
           }"
         >
           <img
-            [src]="friend && friend.avatar || 'assets/img/generic_avatar.png'"
+            [src]="(friend && friend.avatar) || 'assets/img/generic_avatar.png'"
             alt=""
             class="avatarImage img-fluid"
           />
         </div>
-        <div 
+        <div
           class="avatarFrameonline"
           [ngClass]="{
             avatarFrameaway: user && user.status === 'away',
@@ -25,7 +25,7 @@
           }"
         >
           <img
-            [src]="user && user.avatar || 'assets/img/generic_avatar.png'"
+            [src]="(user && user.avatar) || 'assets/img/generic_avatar.png'"
             alt=""
             class="avatarImage img-fluid"
           />
@@ -63,6 +63,11 @@
                     <div *ngIf="m.type === 'text'">
                       <b>{{ getUserNickById(m.sender) }}</b> dice: {{ m.text }}
                     </div>
+                    <div *ngIf="m.type === 'image'">
+                      <img [src]="m.image" alt=""
+                        style="max-width: 300px;"
+                       >
+                    </div>
                     <div *ngIf="m.type === 'zumbido'">
                       <span *ngIf="m.sender === user.uid">
                         Has enviado un zumbido.
@@ -71,7 +76,12 @@
                         <b>{{ getUserNickById(m.sender) }}</b>
                         te ha enviado un zumbido
                       </span>
-                      <img src="assets/img/zumbido.png" alt="" width="40" height="20">
+                      <img
+                        src="assets/img/zumbido.png"
+                        alt=""
+                        width="40"
+                        height="20"
+                      />
                     </div>
                   </div>
                 </div>
@@ -97,17 +107,21 @@
             </mat-form-field>
           </form>
           <div class="layoutRow">
-            <button
-              mat-flat-button
-              aria-label="smile"
-            >
-              <img src="assets/img/icons/regular_smile.gif" alt="" width="20" height="20">
+            <button mat-flat-button aria-label="smile">
+              <img
+                src="assets/img/icons/regular_smile.gif"
+                alt=""
+                width="20"
+                height="20"
+              />
             </button>
-            <button
-              mat-flat-button
-              aria-label="wink_smile"
-            >
-              <img src="assets/img/icons/wink_smile.gif" alt="" width="20" height="20">
+            <button mat-flat-button aria-label="wink_smile">
+              <img
+                src="assets/img/icons/wink_smile.gif"
+                alt=""
+                width="20"
+                height="20"
+              />
             </button>
             <button
               (click)="sendZumbido()"
@@ -115,15 +129,23 @@
               aria-label="zumbido"
               title="Enviar zumbido"
             >
-              <img src="assets/img/zumbido.png" alt="" width="40" height="20">
+              <img src="assets/img/zumbido.png" alt="" width="40" height="20" />
             </button>
-            <button
-              mat-flat-button
-              aria-label="icon"
-              title="Adjuntar foto"
-            >
-              <img src="assets/img/icons/camera.gif" alt="" width="20" height="20">
-            </button>
+            <label class="layoutAlignCenterCenter custom-file-upload layoutRow">
+              <input
+                type="file"
+                (change)="fileChangeEvent($event)"
+                name=""
+                id=""
+              />
+              <img
+                src="assets/img/icons/camera.gif"
+                alt=""
+                width="20"
+                height="20"
+              />
+              Selecciona una imagen 
+            </label>
           </div>
         </div>
       </div>

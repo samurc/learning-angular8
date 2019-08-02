@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { AngularFireStorage } from "@angular/fire/storage";
 import { User } from "../interfaces/user";
 import { UserService } from "../services/user.service";
 import { ConversationService } from "../services/conversation.service";
@@ -18,11 +19,13 @@ export class ConversationComponent implements OnInit {
   textMessage: string;
   conversationList: any;
   shake: boolean = false;
+  picture: any;
   constructor(
     private activateRoute: ActivatedRoute,
     private userService: UserService,
     private conversationService: ConversationService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private firebaseStorage: AngularFireStorage
   ) {
     this.friendId = this.activateRoute.snapshot.params.uid;
 
@@ -80,6 +83,19 @@ export class ConversationComponent implements OnInit {
     this.doZumbido();
   }
 
+  sendPicture(p) {
+    const message = {
+      uid: this.conversationId,
+      timestamp: Date.now(),
+      text: null,
+      image: p,
+      sender: this.user.uid,
+      receiver: this.friend.uid,
+      type: "image"
+    };
+    this.conversationService.createConversation(message).then(() => {});
+  }
+
   doZumbido() {
     const audio = new Audio();
     audio.src = "assets/sound/zumbido.m4a";
@@ -102,7 +118,10 @@ export class ConversationComponent implements OnInit {
             if (!message.seen) {
               message.seen = true;
               this.conversationService.editConversation(message);
-              if (message.type === "text") {
+              if (
+                message.type === "text" ||
+                message.type === "image"
+              ) {
                 const audio = new Audio();
                 audio.src = "assets/sound/new_message.m4a";
                 audio.load();
@@ -130,9 +149,37 @@ export class ConversationComponent implements OnInit {
 
   getUserAvatarById(id) {
     if (id === this.friend.uid) {
-      return this.friend.avatar || 'assets/img/generic_avatar.png';
+      return this.friend.avatar || "assets/img/generic_avatar.png";
     } else {
       return this.user.avatar || "assets/img/generic_avatar.png";
+    }
+  }
+
+  fileChangeEvent(event: any): void {
+    const reader = new FileReader();
+    const file = event.target.files[0];
+    if (file) {
+      reader.onload = e => {
+        if (e.target.result) {
+          const currentPictureId = Date.now();
+          const pictures = this.firebaseStorage
+            .ref("conversation/" + currentPictureId + ".jpg")
+            .putString(e.target.result, "data_url");
+          pictures
+            .then(result => {
+              this.picture = this.firebaseStorage
+                .ref("conversation/" + currentPictureId + ".jpg")
+                .getDownloadURL();
+              this.picture.subscribe(p => {
+                this.sendPicture(p);
+              });
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        }
+      };
+      reader.readAsDataURL(file);
     }
   }
 }
