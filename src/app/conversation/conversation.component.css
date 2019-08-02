@@ -1,4 +1,4 @@
-#conversationProfile{
+#conversationContainer {
   background-image: url('/assets/img/msnbg.jpg');
   background-size: 100%;
   background-repeat: no-repeat;
@@ -64,7 +64,6 @@
 }
 .overflowContent{
   color: black;
-  background-color: #ddd;
   padding: 10px;
 }
 

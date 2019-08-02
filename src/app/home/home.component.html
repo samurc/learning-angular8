@@ -8,7 +8,11 @@
             [ngClass]="{'avatarFrameaway': user && user.status === 'away', 'avatarFramebusy': user && user.status ===
             'busy',
             'avatarFrameoffline': user && user.status === 'appear_offline'}">
-            <img src="assets/img/generic_avatar.png" id="homeAvatarPicture" alt="">
+            <img
+              [src]="user && user.avatar || 'assets/img/generic_avatar.png'"
+              id="homeAvatarPicture"
+              alt=""
+            >
           </div>
         </div>
         <div *ngIf="user" class="col col-profile-detail marle15 layoutColumn layoutAlignCenterStart">

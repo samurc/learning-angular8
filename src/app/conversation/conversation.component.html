@@ -1,63 +1,132 @@
-<div id="conversationProfile" class="main">
-	<div class="container">
-		<div class="flex-1 layoutRow layoutGeneral">
-			<div class="photoSection layoutColumn layoutAlignSpaceAroundCenter">
-				<div class="avatarFrameonline">
-				  <img src="assets/img/generic_avatar.png" alt="" class="avatarImage img-fluid">
-				</div>
-				<div class="avatarFrameonline">
-				  <img src="assets/img/generic_avatar.png" alt="" class="avatarImage img-fluid">
-				</div>
-			</div>
-			<div class="conversationSection layoutColumn">
-				<div class="historialChat">
-					<div class="fixedContainer">
-						<div class="nameTitle">Cat <span class="statusTitle">(busy)</span></div>
-						<div class="statusMessage">I love my cat</div>
-					</div>
-					<div class="contentWrapper">
-						<div class="overflowContainer">
-							<div class="overflowContent">
-								<div class="layoutRow itemChat layoutAlignStartCenter">
-									<div class="avatarChat">
-										<img src="assets/img/generic_avatar.png" alt="" class="avatarImage img-fluid">
-									</div>
-									<div class="textChat">
-										 ¿cómo estás que dice este chat?
-									</div>
-								</div>
-								<div class="layoutRow itemChat layoutAlignEndCenter itemChatB">
-								  <div class="avatarChat">
-								    <img src="assets/img/generic_avatar.png" alt="" class="avatarImage img-fluid">
-								  </div>
-								  <div class="textChat">
-								    ¿cómo estás que dice este chat?
-								  </div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="messageChat">
-					<span class="lastMessage">Last message received on June 30, 2019 at 12:32</span>
-					<form class="messageForm">
-						<mat-form-field class="full-width">
-						  <textarea matInput placeholder="" rows="3" resize="no"></textarea>
-						</mat-form-field>
-					</form>
-					<div class="layoutRow">
-						<button mat-icon-button aria-label="Example icon-button with a heart icon">
-						  <mat-icon>face</mat-icon>
-						</button>
-						<button mat-icon-button color="primary" aria-label="Example icon-button with a heart icon">
-						  <mat-icon>pan_tool</mat-icon>
-						</button>
-						<button mat-icon-button color="accent" aria-label="Example icon-button with a heart icon">
-						  <mat-icon>wifi_tethering</mat-icon>
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<div id="conversationContainer" class="main" [ngClass]="{'shaker': shake}">
+  <div class="container">
+    <div class="flex-1 layoutRow layoutGeneral">
+      <div class="photoSection layoutColumn layoutAlignSpaceAroundCenter">
+        <div 
+          class="avatarFrameonline"
+          [ngClass]="{
+            avatarFrameaway: friend && friend.status === 'away',
+            avatarFramebusy: friend && friend.status === 'busy',
+            avatarFrameoffline: friend && friend.status === 'appear_offline'
+          }"
+        >
+          <img
+            [src]="friend && friend.avatar || 'assets/img/generic_avatar.png'"
+            alt=""
+            class="avatarImage img-fluid"
+          />
+        </div>
+        <div 
+          class="avatarFrameonline"
+          [ngClass]="{
+            avatarFrameaway: user && user.status === 'away',
+            avatarFramebusy: user && user.status === 'busy',
+            avatarFrameoffline: user && user.status === 'appear_offline'
+          }"
+        >
+          <img
+            [src]="user && user.avatar || 'assets/img/generic_avatar.png'"
+            alt=""
+            class="avatarImage img-fluid"
+          />
+        </div>
+      </div>
+      <div class="conversationSection layoutColumn">
+        <div class="historialChat">
+          <div class="fixedContainer">
+            <div class="nameTitle">
+              {{ friend && friend.nick }}
+              <span class="statusTitle">({{ friend && friend.status }})</span>
+            </div>
+            <div class="statusMessage">{{ friend && friend.subnick }}</div>
+          </div>
+          <div class="contentWrapper">
+            <div class="overflowContainer">
+              <div class="overflowContent">
+                <div
+                  [ngClass]="{
+                    itemChatB: friend && friend.uid !== m.sender,
+                    layoutAlignStartCenter: friend && friend.uid == m.sender,
+                    layoutAlignEndCenter: friend && friend.uid !== m.sender
+                  }"
+                  class="layoutRow itemChat "
+                  *ngFor="let m of conversationList"
+                >
+                  <div class="avatarChat">
+                    <img
+                      [src]="getUserAvatarById(m.sender)"
+                      alt=""
+                      class="avatarImage img-fluid"
+                    />
+                  </div>
+                  <div class="textChat">
+                    <div *ngIf="m.type === 'text'">
+                      <b>{{ getUserNickById(m.sender) }}</b> dice: {{ m.text }}
+                    </div>
+                    <div *ngIf="m.type === 'zumbido'">
+                      <span *ngIf="m.sender === user.uid">
+                        Has enviado un zumbido.
+                      </span>
+                      <span *ngIf="m.sender !== user.uid">
+                        <b>{{ getUserNickById(m.sender) }}</b>
+                        te ha enviado un zumbido
+                      </span>
+                      <img src="assets/img/zumbido.png" alt="" width="40" height="20">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="messageChat">
+          <span class="lastMessage"
+            >Last message received on June 30, 2019 at 12:32</span
+          >
+          <form class="messageForm">
+            <mat-form-field class="full-width">
+              <textarea
+                [(ngModel)]="textMessage"
+                (keyup.enter)="sendMessage()"
+                name="textMessage"
+                matInput
+                placeholder=""
+                rows="3"
+                resize="no"
+              ></textarea>
+            </mat-form-field>
+          </form>
+          <div class="layoutRow">
+            <button
+              mat-flat-button
+              aria-label="smile"
+            >
+              <img src="assets/img/icons/regular_smile.gif" alt="" width="20" height="20">
+            </button>
+            <button
+              mat-flat-button
+              aria-label="wink_smile"
+            >
+              <img src="assets/img/icons/wink_smile.gif" alt="" width="20" height="20">
+            </button>
+            <button
+              (click)="sendZumbido()"
+              mat-flat-button
+              aria-label="zumbido"
+              title="Enviar zumbido"
+            >
+              <img src="assets/img/zumbido.png" alt="" width="40" height="20">
+            </button>
+            <button
+              mat-flat-button
+              aria-label="icon"
+              title="Adjuntar foto"
+            >
+              <img src="assets/img/icons/camera.gif" alt="" width="20" height="20">
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
