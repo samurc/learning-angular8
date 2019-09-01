@@ -25,7 +25,7 @@
                         </mat-form-field>
 
                         <mat-form-field class="full-width">
-                            <input [(ngModel)]="password" name="password" matInput type="password" placeholder="Ingrese contraseña">
+                            <input [(ngModel)]="password" name="password" matInput type="password" placeholder="Ingrese contraseña" (keyup.enter)="login()">
                         </mat-form-field>
 
                         <mat-form-field *ngIf="operation == 'register'" class="full-width">

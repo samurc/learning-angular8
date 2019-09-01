@@ -5,6 +5,9 @@
     <mat-form-field class="full-width">
       <input matInput type="email" placeholder="Ingrese email" [(ngModel)]="friendEmail" (keyup.enter)="sendRequest()" />
     </mat-form-field>
+    <mat-form-field class="full-width">
+      <textarea matInput placeholder="Ingrese un saludo personalizado" [(ngModel)]="greetingRequest" (keyup.enter)="sendRequest()"></textarea>
+    </mat-form-field>
   </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">

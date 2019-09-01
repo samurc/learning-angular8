@@ -1,8 +1,14 @@
-<div *ngIf="contact" class="layoutRow">
-    <img matListAvatar [src]="contact.status | userStatus" alt="...">
+<mat-list-item *ngIf="contact">
+    <img *ngIf="contact.avatar" matListAvatar [src]="contact.avatar" alt="...">
+    <img *ngIf="!contact.avatar" matListAvatar src="assets/img/generic_avatar.png" alt="...">
     <h3 matLine>
         <a routerLink="/conversation/{{contact.uid}}">
             <b>{{contact.nick}}</b> - <span> {{contact.email}} </span>
         </a>
     </h3>
-</div>
+    <i mat-line *ngIf="contact.subnick">{{ contact.subnick }}</i>
+    <p mat-line> {{contact.status}} </p>
+</mat-list-item>
+<mat-divider></mat-divider>
+
+

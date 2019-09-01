@@ -90,7 +90,8 @@ export interface DialogData {
   templateUrl: "modal/dialog-content-request.html"
 })
 export class DialogContentRequestComponent {
-  friendEmail: string = '';
+  friendEmail: string = "";
+  greetingRequest: string = "";
 
   constructor(
     public dialogRef: MatDialogRef<DialogContentRequestComponent>,
@@ -103,14 +104,18 @@ export class DialogContentRequestComponent {
       timestamp: Date.now(),
       receiver_email: this.friendEmail,
       sender: this.data.user.uid,
-      status: 'pending'
+      status: "pending",
+      greeting: this.greetingRequest
     };
-    this.requestService.createRequest(request).then(() => {
-      alert('Solicitud enviada');
-      this.dialogRef.close();
-    }).catch((error) => {
-      alert('Hubo un error');
-      console.log(error);
-    });
+    this.requestService
+      .createRequest(request)
+      .then(() => {
+        alert("Solicitud enviada");
+        this.dialogRef.close();
+      })
+      .catch(error => {
+        alert("Hubo un error");
+        console.log(error);
+      });
   }
 }

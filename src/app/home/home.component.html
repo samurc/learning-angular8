@@ -16,16 +16,15 @@
           </div>
         </div>
         <div *ngIf="user" class="col col-profile-detail marle15 layoutColumn layoutAlignCenterStart">
-          <b>{{ user.nick }}</b>
+          <span>
+            <b>{{ user.nick }}</b>
+            ({{ user.email }})
+          </span> 
           <div>
-            <span>{{ user.status }}</span>
-            <br/>
-            <span>
-              <{{ user.subnick }}>
-               {{ user.email }}</span>
-            <br/>
-            <a (click)="logout()">Logout</a>
+            <p>{{ user.status }}</p>
+            <i *ngIf="user.subnick"><{{ user.subnick }}></i>
           </div>
+          <a (click)="logout()">Logout</a>
         </div>
       </div>
     </div>
@@ -45,9 +44,7 @@
 
     <b *ngIf="user && user.friends">Amigos ({{ user.friends.length}} / {{ user.friends.length }})</b>
     <mat-list *ngIf="user && user.friends">
-      <mat-list-item *ngFor="let user of user.friends | search: query; let i = index">
-        <app-contact [uid]="user"></app-contact>
-      </mat-list-item>
+      <app-contact [uid]="user" *ngFor="let user of user.friends | search: query; let i = index"></app-contact>
     </mat-list>
   </div>
   

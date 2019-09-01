@@ -5,6 +5,7 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA
 } from "@angular/material/dialog";
+import { User } from 'src/app/interfaces/user';
 
 export interface RequestData {
   scope: any;
@@ -17,6 +18,7 @@ export interface RequestData {
   styleUrls: ["./request.component.css"]
 })
 export class RequestComponent {
+  contact: User;
   scope: any;
   shouldAdd: string = "yes";
   currentRequest: any;
@@ -28,6 +30,13 @@ export class RequestComponent {
   ) {
     this.scope = this.data.scope;
     this.currentRequest = this.data.currentRequest;
+    this.userService
+      .getUserById(this.currentRequest.sender)
+      .valueChanges()
+      .subscribe((data: User) => {
+        this.contact = data;
+        console.log(this.contact);
+      });
   }
 
   accept() {
