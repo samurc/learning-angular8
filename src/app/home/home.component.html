@@ -46,13 +46,7 @@
     <b *ngIf="user && user.friends">Amigos ({{ user.friends.length}} / {{ user.friends.length }})</b>
     <mat-list *ngIf="user && user.friends">
       <mat-list-item *ngFor="let user of user.friends | search: query; let i = index">
-        <div>{{ user }}</div>
-        <!--img matListAvatar [src]="user.status | userStatus" alt="...">
-        <h3 matLine>
-          <a routerLink="/conversation/{{user.uid}}">
-            {{user.nick}} - <span> {{user.email}} </span>
-          </a>
-        </h3-->
+        <app-contact [uid]="user"></app-contact>
       </mat-list-item>
     </mat-list>
   </div>

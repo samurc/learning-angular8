@@ -1,0 +1,8 @@
+<div *ngIf="contact" class="layoutRow">
+    <img matListAvatar [src]="contact.status | userStatus" alt="...">
+    <h3 matLine>
+        <a routerLink="/conversation/{{contact.uid}}">
+            <b>{{contact.nick}}</b> - <span> {{contact.email}} </span>
+        </a>
+    </h3>
+</div>

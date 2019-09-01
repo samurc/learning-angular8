@@ -26,6 +26,7 @@ import { MenuComponent } from './menu/menu.component';
 import { SearchPipe } from './pipes/search';
 import { UserStatusPipe } from './pipes/user-status';
 import { RequestComponent } from './modals/request/request.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   imports: [
@@ -52,7 +53,8 @@ import { RequestComponent } from './modals/request/request.component';
     SearchPipe,
     UserStatusPipe,
     DialogContentRequestComponent,
-    RequestComponent
+    RequestComponent,
+    ContactComponent
   ],
   bootstrap: [AppComponent],
   providers: []
