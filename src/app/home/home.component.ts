@@ -44,6 +44,9 @@ export class HomeComponent implements OnInit {
           .subscribe(
             (data: User) => {
               this.user = data;
+              if (this.user.friends) {
+                this.user.friends = Object.values(this.user.friends);
+              }
               console.log(this.user);
             },
             error => {
@@ -74,9 +77,6 @@ export class HomeComponent implements OnInit {
   openDialog() {
     const dialogRef = this.dialog.open(DialogContentRequestComponent, {
       data: { user: this.user }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 }

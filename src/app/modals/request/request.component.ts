@@ -1,22 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject } from "@angular/core";
 import { UserService } from 'src/app/services/user.service';
 import { RequestsService } from 'src/app/services/requests.service';
+import {
+  MatDialogRef,
+  MAT_DIALOG_DATA
+} from "@angular/material/dialog";
+
+export interface RequestData {
+  scope: any;
+  currentRequest: any;
+}
 
 @Component({
-  selector: 'app-request',
-  templateUrl: './request.component.html',
-  styleUrls: ['./request.component.css']
+  selector: "app-request",
+  templateUrl: "./request.component.html",
+  styleUrls: ["./request.component.css"]
 })
-export class RequestComponent implements OnInit {
+export class RequestComponent {
   scope: any;
-  shouldAdd: string = 'yes';
+  shouldAdd: string = "yes";
   currentRequest: any;
   constructor(
     private userService: UserService,
-    private requestService: RequestsService
-  ) { }
-
-  ngOnInit() {
+    private requestService: RequestsService,
+    public dialogRef: MatDialogRef<RequestComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: RequestData
+  ) {
+    this.scope = this.data.scope;
+    this.currentRequest = this.data.currentRequest;
   }
 
   accept() {
@@ -24,9 +35,11 @@ export class RequestComponent implements OnInit {
       this.requestService
         .setRequestStatus(this.currentRequest, "accepted")
         .then(data => {
-          this.userService.addFriend(this.scope.user.uid, this.currentRequest.sender).then(() => {
-            alert('Solicitud aceptada con éxito');
-          })
+          this.userService
+            .addFriend(this.scope.user.uid, this.currentRequest.sender)
+            .then(() => {
+              alert("Solicitud aceptada con éxito");
+            });
           console.log(data);
         })
         .catch(error => {
@@ -51,6 +64,6 @@ export class RequestComponent implements OnInit {
           console.log(error);
         });
     }
+    this.dialogRef.close();
   }
-
 }
