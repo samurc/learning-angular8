@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>Nueva solicitud</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="layoutRow flexWrap">
+    <div class="col-avatar">
+      <img src="assets/img/generic_avatar.png" class="img-fluid" alt="">
+    </div>
+    <div class="col col-profile-detail marle15 layoutColumn layoutAlignCenterStart">
+      <b>{{ currentRequest.sender }}</b>
+      <small>Te ha enviado esta solicitud</small>
+    </div>
+  </div>
+  <h4>¿Deseas agregar a esta persona?</h4>
+  <mat-radio-group [(ngModel)]="shouldAdd" name="addToMsn" aria-label="Select an option">
+    <mat-radio-button value="yes">Si</mat-radio-button>
+    <mat-radio-button value="no">No</mat-radio-button>
+    <mat-radio-button value="later">Después</mat-radio-button>
+  </mat-radio-group>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button (click)="accept()" cdkFocusInitial>Ok</button>
+</mat-dialog-actions>

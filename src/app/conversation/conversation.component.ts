@@ -159,7 +159,7 @@ export class ConversationComponent implements OnInit {
     const reader = new FileReader();
     const file = event.target.files[0];
     if (file) {
-      reader.onload = e => {
+      reader.onload = (e: any) => {
         if (e.target.result) {
           const currentPictureId = Date.now();
           const pictures = this.firebaseStorage

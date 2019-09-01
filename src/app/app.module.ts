@@ -16,24 +16,18 @@ import { AppSharedModule } from './app-shared.module';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
+import {
+  HomeComponent,
+  DialogContentRequestComponent
+} from "./home/home.component";
 import { ConversationComponent } from './conversation/conversation.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MenuComponent } from './menu/menu.component';
 import { SearchPipe } from './pipes/search';
 import { UserStatusPipe } from './pipes/user-status';
+import { RequestComponent } from './modals/request/request.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    HomeComponent,
-    ConversationComponent,
-    ProfileComponent,
-    MenuComponent,
-    SearchPipe,
-    UserStatusPipe
-  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -47,7 +41,20 @@ import { UserStatusPipe } from './pipes/user-status';
     AppSharedModule,
     ImageCropperModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  entryComponents: [DialogContentRequestComponent, RequestComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    HomeComponent,
+    ConversationComponent,
+    ProfileComponent,
+    MenuComponent,
+    SearchPipe,
+    UserStatusPipe,
+    DialogContentRequestComponent,
+    RequestComponent
+  ],
+  bootstrap: [AppComponent],
+  providers: []
 })
 export class AppModule {}

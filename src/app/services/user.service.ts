@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../interfaces/user';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { trimTrailingNulls } from '@angular/compiler/src/render3/view/util';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +22,9 @@ export class UserService {
   }
   setAvatar(avatar, uid) {
     return this.angularFireDatabase.object('/users/' + uid + '/avatar').set(avatar);
+  }
+  addFriend(userId, friendId) {
+    this.angularFireDatabase.object('users/' + userId + '/friends/' + friendId).set(friendId);
+    return this.angularFireDatabase.object('users/' + friendId + '/friends/' + userId).set(userId);
   }
 }
