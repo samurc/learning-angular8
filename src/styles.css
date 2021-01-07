@@ -346,7 +346,7 @@ a {
   text-align: center;
   padding: 5%;
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.36);
+  /*border: 1px solid rgba(255, 255, 255, 0.36);*/
   -webkit-box-shadow: 3px 3px 21px 1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 3px 3px 21px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 3px 3px 21px 1px rgba(0, 0, 0, 0.75);
@@ -366,7 +366,7 @@ a {
   text-align: center;
   padding: 5%;
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.36);
+  /*border: 1px solid rgba(255, 255, 255, 0.36);*/
   -webkit-box-shadow: 3px 3px 21px 1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 3px 3px 21px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 3px 3px 21px 1px rgba(0, 0, 0, 0.75);
@@ -399,7 +399,7 @@ a {
   text-align: center;
   padding: 5%;
   border-radius: 10px;
-  border: 1px solid #F6030E;
+  /*border: 1px solid #F6030E;*/
   display: inline-block;
 }
 

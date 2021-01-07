@@ -3,3 +3,11 @@
   background-size: 100%;
   background-repeat: no-repeat;
 }
+
+.col-photo {
+  max-width: 130px;
+}
+
+.lbl-file-upload{
+  padding-bottom: 10px;
+}

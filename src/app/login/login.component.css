@@ -1,5 +1,20 @@
 .loginContainer{
     background-image: url('/assets/img/msnbg.jpg');
-    background-size: contain;
+    background-size: initial;
     background-repeat: no-repeat;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.container{
+    max-width: 375px;
+}
+.formDiv{
+    width: 100%;
+    max-width: 300px;
+    margin-top: 8px;
+}
+h3{
+    margin-bottom: 16px;
 }

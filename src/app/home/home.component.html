@@ -42,7 +42,7 @@
       </div>
     </div>
 
-    <b *ngIf="user && user.friends">Amigos ({{ user.friends.length}} / {{ user.friends.length }})</b>
+    <b *ngIf="user && user.friends">Amigos ({{ user.friends.length}}/{{ user.friends.length }})</b>
     <mat-list *ngIf="user && user.friends">
       <app-contact [uid]="user" *ngFor="let user of user.friends | search: query; let i = index"></app-contact>
     </mat-list>
